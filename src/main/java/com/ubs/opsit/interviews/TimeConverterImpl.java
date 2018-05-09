@@ -20,6 +20,11 @@ public class TimeConverterImpl implements TimeConverter {
 		Integer minute = Integer.valueOf(time[1]);
 		Integer seconds = Integer.valueOf(time[2]);
 
+		if (hour > 24 || minute > 60 || seconds > 60 || hour < 0 || minute < 0 || seconds < 0
+				|| (hour == 24 && (minute > 0 || seconds > 0))) {
+			throw new RuntimeException("Invalid Time provided.");
+		}
+
 		int h = hour.intValue();
 		for (int i = 0; h > 0 && i < first.length && h / 5 > 0; i++) {
 			first[i] = CHAR_R;

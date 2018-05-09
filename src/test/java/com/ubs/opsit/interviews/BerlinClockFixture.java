@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static com.ubs.opsit.interviews.support.BehaviouralTestEmbedder.aBehaviouralTestRunner;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.fail;
 
 /**
  * Acceptance test class that uses the JBehave (Gerkin) syntax for writing stories.  You should not need to
@@ -32,5 +33,15 @@ public class BerlinClockFixture {
     @Then("the clock should look like $")
     public void thenTheClockShouldLookLike(String theExpectedBerlinClockOutput) {
         assertThat(berlinClock.convertTime(theTime)).isEqualTo(theExpectedBerlinClockOutput);
+    }
+    
+    @Then("Exception message look like $")
+    public void thenExceptionMessageShouldLookLike(String theExpectedExceptionMessage) {
+        try{
+        	berlinClock.convertTime(theTime);
+        	fail("Should not reach here.");
+        }catch(Exception e){
+        	assertThat("Invalid Time provided.").isEqualTo(e.getMessage());
+        }
     }
 }

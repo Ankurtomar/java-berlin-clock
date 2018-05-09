@@ -44,5 +44,22 @@ RRRR
 OOOOOOOOOOO
 OOOO
 
+Scenario: Wrong Input 1
+When the time is 24:00:01
+Then Exception message look like Invalid Time provided.
 
+Scenario: Wrong Input 2
+When the time is -1:00:00
+Then Exception message look like Invalid Time provided.
 
+Scenario: Wrong Input 3
+When the time is 25:00:00
+Then Exception message look like Invalid Time provided.
+
+Scenario: Wrong Input 4
+When the time is 00:-10:00
+Then Exception message look like Invalid Time provided.
+
+Scenario: Wrong Input 4
+When the time is 00:00:-10
+Then Exception message look like Invalid Time provided.
